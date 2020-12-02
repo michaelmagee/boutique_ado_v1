@@ -12,12 +12,23 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+
+CI SETUP: Lastly to allow Django to see the MEDIA_URL.
+We need to go to urls.py
+Import our settings and the static function from django.conf.urls.static
+And then use the static function to add the MEDIA_URL to our list of URLs.
+ - from django.conf import settings
+ - from django.conf.urls.static import static
+ plus append to url patterns:
+     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("", include("home.urls"))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
