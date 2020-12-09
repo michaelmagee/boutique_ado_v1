@@ -1,11 +1,24 @@
 """ Describe this """
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.contrib import messages
+from django.db.models import Q
 from .models import Product
 
 def all_products(request):
     """ View for all products, inc sorting & searching """
 
     products = Product.objects.all()
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET["q"]
+            if not query:
+                messages.error(request, "You didn't enter any search criterea")
+                return redirect(reverse("products"))
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            products = products.filter(queries)
 
     context = {
         "products": products,
