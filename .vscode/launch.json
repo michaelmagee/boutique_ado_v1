@@ -13,7 +13,11 @@
         "args": [
             "runserver",
         ],
-        "django": true
+        "django": true,
+        "env": {
+            "DJANGO_ALLOWED_HOSTS": "magee-django-todo-app.herokuapp.com,127.0.0.1",
+            "DJANGO_SECRET_KEY": "b)b8+m*_m3!23jslqt3i-(49d5y1^5vo+_a)vpq!6#a$#ec&x6"
+        }
     }
     ]
 }
