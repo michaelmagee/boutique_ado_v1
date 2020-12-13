@@ -75,6 +75,12 @@ The logo font class will be used throughout this site
     z-index: -1;
 }
 
+/* products category badges  */
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
