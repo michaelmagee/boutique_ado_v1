@@ -10,12 +10,7 @@ body {
     font-family: 'Lato';
 }
 
-/* from Bulma I've taken this icon class from another CSS framework similar to bootstrap called Bulma
-Which will ensure that whenever we use font awesome icons.
-They will always stay perfectly centred and have a consistent size
-unless we manually change it.
-The logo font class will be used throughout this site
-*/
+/* from Bulma */
 .icon {
     align-items: center;
     display: inline-flex;
@@ -43,6 +38,19 @@ The logo font class will be used throughout this site
     color: white;
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important; /* use important to override link colors for <a> elements */
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
@@ -66,16 +74,15 @@ The logo font class will be used throughout this site
 }
 
 .overlay {
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: white;
-    z-index: -1;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
 }
 
-/* products category badges  */
 a.category-badge > span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
@@ -92,6 +99,7 @@ a.category-badge > span.badge:hover {
 .btt-link {
     cursor: pointer;
 }
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
