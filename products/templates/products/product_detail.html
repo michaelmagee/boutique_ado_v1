@@ -51,6 +51,19 @@
                             without this token Django won't allow you to submit the form.
                         -->
                         <div class="form-row">
+                            {% with product.has_sizes as s %} <!-- Now "s" can be reused below -->
+                            {% if s %}
+                                <div class="col-12">
+                                    <p><strong>Size:</strong></p>
+                                    <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
+                                        <option value="xs">XS</option>
+                                        <option value="s">S</option>
+                                        <option value="m" selected>M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                    </select>
+                                </div>
+                            {% endif %}
                             <div class="col-12">
                                 <p class="mt-3"><strong>Quantity:</strong></p>
                                 <div class="form-group w-50">
@@ -60,7 +73,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <!-- 
+                                I'll reuse the s variable in this last column in order to make it full width 
+                                and have a little top margin only if the product has sizes.
+                                This is just an aesthetic thing to make it look a bit cleaner by evening up the
+                                margins and spacing.
+                            -->
+                            <div class="col{% if s %}-12 mt-2{% endif %}">
                                 <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
@@ -77,6 +96,7 @@
                                 We can redirect the user back to the same page once the product is added to their bag.
                             -->
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            {% endwith %}
                         </div>
                     </form>
                 </div>
