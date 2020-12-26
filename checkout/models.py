@@ -1,3 +1,4 @@
+""" MOdule Docstring """
 import uuid
 
 from django.db import models
@@ -8,6 +9,7 @@ from products.models import Product
 
 
 class Order(models.Model):
+    """ Class Docstring """
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -56,6 +58,7 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """ Class Docstring """
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='lineitems')
