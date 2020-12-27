@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'boutique_ado.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # MIKE Notice the add of the app dirs!
 TEMPLATES = [
     {
@@ -77,8 +79,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # required for all-auth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',  # required to get to the no-image file
                 'bag.contexts.bag_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
