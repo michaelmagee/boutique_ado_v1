@@ -1,6 +1,4 @@
-"""Handle Stripe webhooks"""
 from django.http import HttpResponse
-
 
 
 class StripeWH_Handler:
