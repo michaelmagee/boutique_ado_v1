@@ -1,34 +1,39 @@
-""" Docstring Here"""
-from django.contrib import admin
-from .models import Order, OrderLineItem
+from django import forms
+from .models import Order
 
 
-class OrderLineItemAdminInline(admin.TabularInline):
-    """ Docstring Here"""
-    model = OrderLineItem
-    readonly_fields = ('lineitem_total',)
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('full_name', 'email', 'phone_number',
+                  'street_address1', 'street_address2',
+                  'town_or_city', 'postcode', 'country',
+                  'county',)
 
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'full_name': 'Full Name',
+            'email': 'Email Address',
+            'phone_number': 'Phone Number',
+            'postcode': 'Postal Code',
+            'town_or_city': 'Town or City',
+            'street_address1': 'Street Address 1',
+            'street_address2': 'Street Address 2',
+            'county': 'County, State or Locality',
+        }
 
-class OrderAdmin(admin.ModelAdmin):
-    """ Docstring Here"""
-    inlines = (OrderLineItemAdminInline,)
-
-    readonly_fields = ('order_number', 'date',
-                       'delivery_cost', 'order_total',
-                       'grand_total', 'original_bag',
-                       'stripe_pid',)
-
-    fields = ('order_number', 'date', 'full_name',
-              'email', 'phone_number', 'country',
-              'postcode', 'town_or_city', 'street_address1',
-              'street_address2', 'county', 'delivery_cost',
-              'order_total', 'grand_total', 'original_bag',
-              'stripe_pid',)
-
-    list_display = ('order_number', 'date', 'full_name',
-                    'order_total', 'delivery_cost',
-                    'grand_total',)
-
-    ordering = ('-date',)
-
-admin.site.register(Order, OrderAdmin)
+        self.fields['full_name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            if field != 'country':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            self.fields[field].label = False
