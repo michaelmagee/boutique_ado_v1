@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = True
 
 #ALLOWED_HOSTS = ['magee-django-todo-app.herokuapp.com', '127.0.0.1']
-ALLOWED_HOSTS = list(str.split(os.environ.get('DJANGO_ALLOWED_HOSTS'), ','))
+ALLOWED_HOSTS = list(str.split(os.environ.get('ALLOWED_HOSTS'), ','))
 
 
 
@@ -119,15 +119,20 @@ WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-DATABASES = {
+# if local use sqllite, if in Heroku, use the Postgres defined in env
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#DATABASES = {
-#    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-#}
+
 
 
 # Password validation
