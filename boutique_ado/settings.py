@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 #ALLOWED_HOSTS = ['magee-django-todo-app.herokuapp.com', '127.0.0.1']
 ALLOWED_HOSTS = list(str.split(os.environ.get('ALLOWED_HOSTS'), ','))
@@ -125,7 +125,6 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-    print("Postgres databas found")
 else:
     DATABASES = {
     'default': {
