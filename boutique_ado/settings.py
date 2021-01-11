@@ -196,7 +196,8 @@ Static files will be collected into a static folder in our s3 bucket.
 """
 
 if 'USE_AWS' in os.environ:
-        # Cache control
+    print ("Aws Detected")
+    # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
