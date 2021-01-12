@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+# print("Environ: ", os.environ)
+DEBUG = 'MY-DEVELOPMENT' in os.environ
 if DEBUG:
-    print("WARNING Debug enabled")
+    print("===========>  WARNING Debug enabled")
 
 #ALLOWED_HOSTS = ['magee-django-todo-app.herokuapp.com', '127.0.0.1']
 ALLOWED_HOSTS = list(str.split(os.environ.get('ALLOWED_HOSTS'), ','))
@@ -233,7 +234,7 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 
 # Email stuff 
-if 'DEVELOPMENT' in os.environ:
+if 'MY-DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'boutiqueado@examample.com'
 else:
