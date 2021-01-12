@@ -16,11 +16,9 @@
             "--noreload"
         ],
         "django": true,
+        // "DEVELOPMENT": "True",
         "env": {
-            "DJANGO_ALLOWED_HOSTS": "localhost,127.0.0.1",
-            "DJANGO_SECRET_KEY": "b)b8+m*_m3!23jslqt3i-(49d5y1^5vo+_a)vpq!6#a$#ec&x6",
-            "STRIPE_PUBLIC_KEY": "pk_test_51I34iULW6jaQl80yYc7ur2ealzSCSzk541oiFk39YvLAJe3eX81hfDHd4Kwc2dL9PygRDoOfxCTJHM1xCevhgBRT00NIgOHDBn",
-            "STRIPE_SECRET_KEY": "sk_test_51I34iULW6jaQl80yvF1AcrQ6pzg6XfPL8H3vrjU2mfbD6dKQ4boHeiZ5Ku9UOwLyj1TG5h149MxPTK1m2dUMFoOR00DjeyiP5z"
+ 
         }
     }
     ]
